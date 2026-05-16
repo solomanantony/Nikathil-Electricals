@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikathil Electricals | Premium Electrical Showroom</title>
+    <style>
+        /* --- MODERN PREMIUM LIGHT SYSTEM --- */
+        :root {
+            --bg-pure: #FFFFFF;
+            --bg-surface: #F8FAFC;
+            --bg-card: #FFFFFF;
+            --accent-primary: #2563EB; /* Deep Electric Blue */
+            --accent-glow: #FF6B00;    /* Warm Amber */
+            --text-main: #0F172A;      /* Deep Slate Black */
+            --text-muted: #64748B;     /* Muted Grey */
+            --border-light: #E2E8F0;   /* Clean Divider Line */
+            --radius-lg: 24px;
+            --radius-md: 16px;
+            --shadow-soft: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 12px -4px rgba(15, 23, 42, 0.04);
+            --shadow-hover: 0 20px 25px -5px rgba(15, 23, 42, 0.1), 0 8px 10px -6px rgba(15, 23, 42, 0.05);
+            --transition-bounce: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-pure);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* --- PRELOADER --- */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--bg-pure);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
+        }
+
+        .loader-ring {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--bg-surface);
+            border-radius: 50%;
+            border-top-color: var(--accent-primary);
+            animation: spin 0.8s cubic-bezier(0.6, 0.2, 0.2, 0.8) infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* --- STRUCTURAL LAYOUT --- */
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 0;
+        }
+
+        .section-title {
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .section-title span {
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            color: var(--accent-primary);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .section-title h2 {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        /* --- SCROLL ANIMATIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- STICKY MODERN NAVBAR --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 25px 0;
+            transition: all 0.3s ease;
+            background-color: transparent;
+        }
+
+        header.sticky {
+            padding: 15px 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--text-main);
+            letter-spacing: 0.5px;
+        }
+
+        .logo-sub {
+            font-size: 0.7rem;
+            color: var(--accent-primary);
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 35px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-primary);
+        }
+
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background-color: var(--text-main);
+            transition: all 0.3s ease;
+        }
+
+        /* --- PREMIUM LIGHT HERO SECTION --- */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding-top: 100px;
+            background: radial-gradient(circle at 85% 30%, rgba(37, 99, 235, 0.06) 0%, transparent 45%),
+                        radial-gradient(circle at 15% 70%, rgba(255, 107, 0, 0.04) 0%, transparent 40%);
+            background-color: var(--bg-surface);
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-left h1 {
+            font-size: 3.8rem;
+            font-weight: 900;
+            line-height: 1.15;
+            margin-bottom: 25px;
+            color: var(--text-main);
+            letter-spacing: -1px;
+        }
+
+        .hero-left h1 em {
+            font-style: normal;
+            color: var(--accent-primary);
+        }
+
+        .hero-left p {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 580px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* PREMIUM BUTTON STYLES */
+        .btn {
+            padding: 16px 32px;
+            font-weight: 600;
+            border-radius: var(--radius-md);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1rem;
+            transition: var(--transition-bounce);
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-fill {
+            background-color: var(--accent-primary);
+            color: var(--bg-pure);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+        }
+
+        .btn-fill:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.25);
+            background-color: #1d4ed8;
+        }
+
+        .btn-outline {
+            background-color: var(--bg-pure);
+            color: var(--text-main);
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--bg-surface);
+            border-color: var(--text-muted);
+            transform: translateY(-3px);
+        }
+
+        .hero-right-display {
+            position: relative;
+            height: 480px;
+            background: linear-gradient(rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.2)),
+                        url('https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?auto=format&fit=crop&w=800&q=80') center center/cover;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .hero-floating-card {
+            position: absolute;
+            bottom: -25px;
+            left: -25px;
+            background: var(--bg-pure);
+            border: 1px solid var(--border-light);
+            padding: 24px;
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: var(--shadow-hover);
+        }
+
+        .floating-badge {
+            width: 48px;
+            height: 48px;
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-stats-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .stat-box {
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            padding: 40px 30px;
+            border-radius: var(--radius-md);
+            transition: var(--transition-bounce);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-primary);
+            background-color: var(--bg-pure);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent-primary);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .about-right p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        /* --- PRODUCT GRID & CARDS --- */
+        .products-section {
+            background-color: var(--bg-surface);
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 30px;
+        }
+
+        .showcase-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: var(--transition-bounce);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            box-shadow: var(--shadow-soft);
+        }
+
+        .showcase-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(37, 99, 235, 0.2);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-media {
+            height: 230px;
+            overflow: hidden;
+            position: relative;
+            background-color: var(--bg-surface);
+        }
+
+        .card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .showcase-card:hover .card-media img {
+            transform: scale(1.05);
+        }
+
+        .card-body {
+            padding: 28px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card-body h3 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+        }
+
+        .card-link {
+            color: var(--accent-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s;
+        }
+
+        .showcase-card:hover .card-link {
+            gap: 10px;
+        }
+
+        /* --- WHY CHOOSE US (FEATURES) --- */
+        .features-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-block {
+            background-color: var(--bg-pure);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 35px 25px;
+            transition: var(--transition-bounce);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .feature-block:hover {
+            border-color: var(--accent-glow);
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .feature-icon {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: inline-block;
+            padding: 10px;
+            background-color: var(--bg-surface);
+            border-radius: 12px;
+        }
+
+        .feature-block h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        .feature-block p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- GALLERY SECTION --- */
+        .gallery-section {
+            background-color: var(--bg-surface);
+        }
+
+        .gallery-wrapper {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-frame {
+            height: 260px;
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .gallery-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-frame:hover img {
+            transform: scale(1.06);
+        }
+
+        .gallery-meta {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(transparent, rgba(15, 23, 42, 0.8));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-meta h4 {
+            color: var(--bg-pure);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .gallery-frame:hover .gallery-meta {
+            opacity: 1;
+        }
+
+        /* --- TESTIMONIAL CARDS --- */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-box {
+            background-color: var(--bg-pure);
+            border: 1px solid var(--border-light);
+            padding: 40px;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-soft);
+            position: relative;
+        }
+
+        .testimonial-box p {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        .profile-node {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .avatar-initial {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: rgba(37, 99, 235, 0.08);
+            color: var(--accent-primary);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        /* --- INTERACTIVE CONTACT PANEL --- */
+        .contact-section {
+            background-color: var(--bg-surface);
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 50px;
+            background-color: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border-light);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .contact-details-side {
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .contact-hub-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .hub-item {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .hub-icon {
+            width: 42px;
+            height: 42px;
+            background-color: var(--bg-surface);
+            border: 1px solid var(--border-light);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-primary);
+            font-size: 1.1rem;
+        }
+
+        .hub-text label {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+
+        .hub-text a, .hub-text span {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 1.05rem;
+            font-weight: 500;
+        }
+
+        .hub-text a:hover {
+            color: var(--accent-primary);
+        }
+
+        .map-frame-side {
+            width: 100%;
+            min-height: 450px;
+        }
+
+        .map-frame-side iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* --- FOOTER LAYOUT --- */
+        footer {
+            background-color: #0F172A; /* Contrast Dark Blue/Black Footer for solid anchor */
+            color: #F8FAFC;
+            padding: 80px 0 30px;
+        }
+
+        .footer-columns {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr;
+            gap: 50px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-brand p {
+            color: #94A3B8;
+            max-width: 360px;
+        }
+
+        .footer-nav h4 {
+            font-size: 1.05rem;
+            margin-bottom: 25px;
+            color: var(--bg-pure);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-nav ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-nav a {
+            color: #94A3B8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-nav a:hover {
+            color: var(--bg-pure);
+        }
+
+        .footer-end {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #334155;
+            color: #64748B;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSE GRAPHICS & LAYOUT QUERIES --- */
+        @media (max-width: 992px) {
+            .hero-grid, .about-grid, .contact-layout {
+                grid-template-columns: 1fr;
+            }
+            .hero-right-display {
+                height: 380px;
+                order: -1;
+            }
+            .hero-left h1 {
+                font-size: 2.8rem;
+            }
+            .contact-details-side {
+                padding: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: var(--bg-pure);
+                flex-direction: column;
+                padding: 120px 40px;
+                transition: var(--transition-bounce);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.08);
+                border-left: 1px solid var(--border-light);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(6px, 6px);
+            }
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -5px);
+            }
+
+            .footer-columns {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="preloader">
+        <div class="loader-ring"></div>
+    </div>
+
+    <header id="header">
+        <div class="navbar">
+            <a href="#home" class="logo">
+                <span class="logo-text">NIKATHIL</span>
+                <span class="logo-sub">ELECTRICALS</span>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-item active">Home</a></li>
+                <li><a href="#about" class="nav-item">About</a></li>
+                <li><a href="#products" class="nav-item">Collections</a></li>
+                <li><a href="#why-choose" class="nav-item">Features</a></li>
+                <li><a href="#gallery" class="nav-item">Gallery</a></li>
+                <li><a href="#contact" class="nav-item">Contact</a></li>
+            </ul>
+            <div class="hamburger" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-grid">
+            <div class="hero-left">
+                <h1>Your Trusted <em>Electrical Store</em> in Alappuzha</h1>
+                <p>Serving Alappuzha with trusted electrical solutions since 2002. We distribute top-tier architectural switchgear, reliable multi-core structural cabling, and architectural illumination setups.</p>
+                <div class="hero-actions">
+                    <a href="tel:+919495330582" class="btn btn-fill">📞 Direct Line</a>
+                    <a href="https://wa.me/919495330582" target="_blank" class="btn btn-outline">💬 WhatsApp Portal</a>
+                </div>
+            </div>
+            <div class="hero-right-display">
+                <div class="hero-floating-card">
+                    <div class="floating-badge">⚡</div>
+                    <div>
+                        <h4 style="font-weight: 700; font-size: 1rem;">Premium Showroom</h4>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">Poopally Junction, Alappuzha</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container reveal">
+        <div class="about-grid">
+            <div class="about-stats-showcase">
+                <div class="stat-box">
+                    <span class="stat-number">24+</span>
+                    <span class="stat-label">Years Operating Expertise</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Certified Original Stock</span>
+                </div>
+                <div class="stat-box" style="grid-column: span 2; text-align: center;">
+                    <p style="color: var(--accent-primary); font-weight: 700; font-size: 1rem; margin-bottom: 4px;">Founder & Proprietor</p>
+                    <h4 style="font-size: 1.35rem; color: var(--text-main); font-weight: 800;">Mr. Antony Devasia</h4>
+                </div>
+            </div>
+            <div class="about-right">
+                <div class="section-title">
+                    <span>Established Since 2002</span>
+                    <h2>Our Operational Philosophy</h2>
+                </div>
+                <p>Nikathil Electricals has reliably supplied critical electrical inventory across Alappuzha for more than two decades. We specialize in procurement parameters engineered to meet international safety certifications and real-world efficiency profiles.</p>
+                <a href="#contact" class="btn btn-outline">Find Our Showroom</a>
+            </div>
+        </div>
+    </section>
+
+  <section id="products" class="products-section">
+    <div class="container reveal">
+        <div class="section-title">
+            <span>Product Portfolio</span>
+            <h2>Showroom Categories</h2>
+        </div>
+        <div class="grid-layout">
+            <!-- 1. Heavy Duty Wires & Cables -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/industrial-wires.png" alt="Heavy Duty Wires & Cables">
+                </div>
+                <div class="card-body">
+                    <h3>Heavy Duty Wires & Cables</h3>
+                    <p>Flame-retardant multi-core wiring products built for heavy domestic and industrial load setups.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+
+            <!-- 2. Modular Switches & Sockets -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/modular-switches.png" alt="Modular Switches & Sockets">
+                </div>
+                <div class="card-body">
+                    <h3>Modular Switches & Sockets</h3>
+                    <p>Minimalist touch configurations, elegant framing matrices, and luxury electrical control layouts.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+
+            <!-- 3. Architectural LED Lighting -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/led_architectural_lighting.png" alt="Architectural LED Lighting">
+                </div>
+                <div class="card-body">
+                    <h3>Architectural LED Lighting</h3>
+                    <p>Ambient profile strip arrays, sleek surface fixtures, and premium designer spotlight models.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+
+            <!-- 4. High-Speed Fans -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/fan.png" alt="High-Speed Fans">
+                </div>
+                <div class="card-body">
+                    <h3>High-Speed Fans</h3>
+                    <p>Energy-efficient BLDC configurations and high-delivery ceiling, wall, pedestal, and exhaust fans matched with decorative styles.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+
+            <!-- 5. MCBs & Distribution Boards -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/mcb.png" alt="MCBs & Distribution Boards">
+                </div>
+                <div class="card-body">
+                    <h3>MCBs & Distribution Boards</h3>
+                    <p>Highly sensitive breaker switches, isolators, and insulated distribution casings for absolute safety.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+
+            <!-- 6. Iron Boxes, Water Heaters, Mixer Grinders -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/heat.png" alt="Home Appliances">
+                </div>
+                <div class="card-body">
+                    <h3>Iron Boxes, Water Heaters & Grinders</h3>
+                    <p>Premium domestic heating appliances, heavy-duty iron options, and high-performance mixer systems.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+
+            <!-- 7. Metal Switch Boxes & Junction Boxes -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/metal.png" alt="Metal Switch Boxes & Junction Boxes">
+                </div>
+                <div class="card-body">
+                    <h3>Metal Switch Boxes & Junction Boxes</h3>
+                    <p>Galvanized, flush-mount concealed enclosures and rugged intersection junction boxes.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+
+            <!-- 8. Electrical Pipes & Earth Pipes -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/pipe.png" alt="Electrical Pipes & Earth Pipes">
+                </div>
+                <div class="card-body">
+                    <h3>Electrical Pipes & Earth Pipes</h3>
+                    <p>Heavy-gauge PVC conduits for wire management along with safe infrastructure grounding rods.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+
+            <!-- 9. Water Pump -->
+            <div class="showcase-card">
+                <div class="card-media">
+                    <img src="images/pump.png" alt="Water Pump">
+                </div>
+                <div class="card-body">
+                    <h3>Water Pump Systems</h3>
+                    <p>High-torque open-well submersibles and domestic self-priming pumps engineered for local demands.</p>
+                    <a href="https://wa.me/919495330582" class="card-link">Inquire Catalog →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="why-choose" class="container reveal">
+        <div class="section-title">
+            <span>Operational Advantages</span>
+            <h2>Built Upon Reliability</h2>
+        </div>
+        <div class="features-layout">
+            <div class="feature-block">
+                <span class="feature-icon">🛡️</span>
+                <h3>Trusted Service</h3>
+                <p>Over two decades of absolute consumer satisfaction across Alappuzha.</p>
+            </div>
+            <div class="feature-block">
+                <span class="feature-icon">💎</span>
+                <h3>Premium Brands</h3>
+                <p>Exclusively hosting authentic, warranty-backed electrical hardware lines.</p>
+            </div>
+            <div class="feature-block">
+                <span class="feature-icon">🏷️</span>
+                <h3>Fair Pricing</h3>
+                <p>Direct consumer rates combined with special trade discounts for builders.</p>
+            </div>
+            <div class="feature-block">
+                <span class="feature-icon">🎯</span>
+                <h3>Expert Consulting</h3>
+                <p>Knowledgeable project advisory to plan your structure's load distribution perfectly.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- <section id="gallery" class="gallery-section">
+        <div class="container reveal">
+            <div class="section-title">
+                <span>Visual Presentation</span>
+                <h2>The Showroom Vault</h2>
+            </div>
+            <div class="gallery-wrapper">
+                <div class="gallery-frame">
+                    <img src="https://images.unsplash.com/photo-1565814636199-ae8133055c1c?auto=format&fit=crop&w=400&q=80" alt="Luminaries">
+                    <div class="gallery-meta"><h4>Luminaries Setup</h4></div>
+                </div>
+                <div class="gallery-frame">
+                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=400&q=80" alt="Switches">
+                    <div class="gallery-meta"><h4>Modular Assemblies</h4></div>
+                </div>
+                <div class="gallery-frame">
+                    <img src="https://images.unsplash.com/photo-1517420162339-f8b075a14eb4?auto=format&fit=crop&w=400&q=80" alt="Supplies">
+                    <div class="gallery-meta"><h4>Contractor Stock</h4></div>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <section id="reviews" class="container reveal">
+        <div class="section-title">
+            <span>Verified Feedback</span>
+            <h2>Client Testimonials</h2>
+        </div>
+        <div class="testimonial-grid">
+            <div class="testimonial-box">
+                <p>"Nikathil Electricals supplied all the premium concealed lights and wire rolls for my home structure. Mr. Antony suggested great load balances that saved me long term costs."</p>
+                <div class="profile-node">
+                    <div class="avatar-initial">JM</div>
+                    <div>
+                        <h4 style="font-weight:700;">Joseph Mathew</h4>
+                        <span style="font-size:0.8rem;color:var(--text-muted);">Villa Owner, Alappuzha</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-box">
+                <p>"The single most dependable spot near Poopally Junction for original ISI-certified inventory items. Quick and seamless corporate replacement processing."</p>
+                <div class="profile-node">
+                    <div class="avatar-initial">RK</div>
+                    <div>
+                        <h4 style="font-weight:700;">Rajesh Kumar</h4>
+                        <span style="font-size:0.8rem;color:var(--text-muted);">Electrical Contractor</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="container reveal" style="padding: 60px 0;">
+            <div class="contact-layout">
+                <div class="contact-details-side">
+                    <div>
+                        <h2 style="font-size: 2.2rem; font-weight:800; margin-bottom: 12px;">Connect Instantly</h2>
+                        <p style="color: var(--text-muted);">Reach out directly or stop by our retail venue for catalog reviews.</p>
+                    </div>
+                    <ul class="contact-hub-list">
+                        <li class="hub-item">
+                            <div class="hub-icon">📍</div>
+                            <div class="hub-text">
+                                <label>Showroom Hub</label>
+                                <span>Poopally Junction, Alappuzha,<br>Kerala – 688503</span>
+                            </div>
+                        </li>
+                        <li class="hub-item">
+                            <div class="hub-icon">📞</div>
+                            <div class="hub-text">
+                                <label>Direct Line</label>
+                                <a href="tel:+919495330582">+91 9495330582</a>
+                            </div>
+                        </li>
+                        <li class="hub-item">
+                            <div class="hub-icon">✉️</div>
+                            <div class="hub-text">
+                                <label>Email Infrastructure</label>
+                                <a href="mailto:nikathilelectricals.shop@gmail.com" style="font-size:0.95rem;">nikathilelectricals.shop@gmail.com</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="https://wa.me/919495330582" target="_blank" class="btn btn-fill" style="width:100%;">Initialize WhatsApp Support</a>
+                </div>
+                <div class="map-frame-side">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3935.7200477996676!2d76.39669807477922!3d9.445929782323816!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b089cd0177347f9%3A0x8c2a0142267629ed!2sNikathil%20Electricals!5e0!3m2!1sen!2sus!4v1778856850444!5m2!1sen!2sus" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container" style="padding: 0 0 40px 0;">
+            <div class="footer-columns">
+                <div class="footer-brand">
+                    <h3>NIKATHIL</h3>
+                    <p>Delivering premier components and advanced electrical equipment configurations to residential structures since 2002.</p>
+                </div>
+                <div class="footer-nav">
+                    <h4>Navigation Links</h4>
+                    <ul>
+                        <li><a href="#home">Home Base</a></li>
+                        <li><a href="#about">About Shop</a></li>
+                        <li><a href="#products">Collections</a></li>
+                        <li><a href="#contact">Contact Hub</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h4>Showroom Timings</h4>
+                    <p style="color: #94A3B8; font-size: 0.95rem; margin-bottom: 6px;">📅 Monday – Saturday</p>
+                    <p style="color: var(--bg-pure); font-weight:600; font-size: 1.05rem;">09:00 AM – 08:30 PM</p>
+                    <p style="color: #64748B; font-size:0.85rem; margin-top:8px;">🚫 Sundays Closed</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-end">
+            <p>© 2026 Nikathil Electricals. Authentically managed under leadership of Mr. Antony Devasia.</p>
+        </div>
+    </footer>
+
+    <script>
+        // PRELOADER DISMISSAL
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('preloader');
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.visibility = 'hidden', 400);
+        });
+
+        // STICKY HEADER INTERACTION MATRIX
+        const navigationHeader = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if(window.scrollY > 40) {
+                navigationHeader.classList.add('sticky');
+            } else {
+                navigationHeader.classList.remove('sticky');
+            }
+        });
+
+        // MOBILE NAVIGATION CONTROL FLOW
+        const toggler = document.getElementById('hamburgerMenu');
+        const navigationTray = document.getElementById('navLinks');
+        const navLinksCollection = document.querySelectorAll('.nav-item');
+
+        toggler.addEventListener('click', () => {
+            toggler.classList.toggle('active');
+            navigationTray.classList.toggle('active');
+        });
+
+        navLinksCollection.forEach(link => {
+            link.addEventListener('click', () => {
+                toggler.classList.remove('active');
+                navigationTray.classList.remove('active');
+            });
+        });
+
+        // SCROLL REVEAL TRIGGERS
+        const revealBlocks = document.querySelectorAll('.reveal');
+        const triggerReveal = () => {
+            const viewportHeight = window.innerHeight * 0.88;
+            revealBlocks.forEach(block => {
+                const distanceTop = block.getBoundingClientRect().top;
+                if(distanceTop < viewportHeight) {
+                    block.classList.add('active');
+                }
+            });
+        };
+        
+        window.addEventListener('scroll', triggerReveal);
+        triggerReveal(); // Primary execution
+
+        // ACTIVE LINK COORDINATOR ON SCROLLING
+        const contentSections = document.querySelectorAll('section');
+        window.addEventListener('scroll', () => {
+            let surfaceSection = '';
+            contentSections.forEach(section => {
+                const sectionOffset = section.offsetTop - 160;
+                if(window.scrollY >= sectionOffset) {
+                    surfaceSection = section.getAttribute('id');
+                }
+            });
+
+            navLinksCollection.forEach(item => {
+                item.classList.remove('active');
+                if(item.getAttribute('href').includes(surfaceSection)) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
